@@ -17,7 +17,7 @@ open class FunnelChart : UIView {
     fileprivate var _animateIntoViewWhenPropertiesChange = false
     fileprivate var _drawCount = 0
     fileprivate var _coneLipHeightAsFractionOfViewHeight: CGFloat = 0.03
-    fileprivate var _stemHeightAsFractionOfViewHeight: CGFloat = 0.5
+    fileprivate var _stemHeightAsFractionOfViewHeight: CGFloat = 0.0
     fileprivate var _stemWidthAsFractionOfViewWidth: CGFloat = 0.15
     fileprivate var _sliceSpacingAsFractionOfViewHeight: CGFloat = 0.002
 
@@ -28,30 +28,30 @@ open class FunnelChart : UIView {
     
     fileprivate var _drawFunnelLeftShadow = true
     fileprivate var _funnelLeftShadowWidthAsFractionOfViewWidth: CGFloat = 0.15
-
+    
     fileprivate var _textShadowColor = UIColor.black.withAlphaComponent(0.25)
     fileprivate var _textShadowOffset = CGSize(width:0, height:1);
-
+    
     fileprivate var _drawLabels = true
     fileprivate var _font = UIFont.boldSystemFont(ofSize: 14.0)
     fileprivate var _labelsWidthAsFractionOfStemWidth: CGFloat = 0.75
     fileprivate var _textColor = UIColor.white
-
-    fileprivate var _values: [Double] = [6, 5, 4, 3, 2]
-
+    
+    fileprivate var _values: [Double] = [5, 3, 2, 2, 1]
+    
     fileprivate var _colorPalette: [UIColor] = [
-            UIColor(red:0.95, green:0.77, blue:0.06, alpha:1.0), // #f1c40f
-            UIColor(red:0.90, green:0.49, blue:0.13, alpha:1.0), // #e67e22
-            UIColor(red:0.91, green:0.30, blue:0.24, alpha:1.0), // #e74c3c
-            UIColor(red:0.10, green:0.74, blue:0.61, alpha:1.0), // #1abc9c
-            UIColor(red:0.18, green:0.80, blue:0.44, alpha:1.0), // #2ecc71
-            UIColor(red:0.20, green:0.60, blue:0.86, alpha:1.0), // #3498db
-            UIColor(red:0.61, green:0.35, blue:0.71, alpha:1.0), // #9b59b6
-            UIColor(red:0.20, green:0.29, blue:0.37, alpha:1.0), // #34495e
-            UIColor(red:0.93, green:0.94, blue:0.95, alpha:1.0), // #ecf0f1
-            UIColor(red:0.58, green:0.65, blue:0.65, alpha:1.0)  // #95a5a6
+        UIColor(red:0.95, green:0.77, blue:0.06, alpha:1.0), // #f1c40f
+        UIColor(red:0.90, green:0.49, blue:0.13, alpha:1.0), // #e67e22
+        UIColor(red:0.91, green:0.30, blue:0.24, alpha:1.0), // #e74c3c
+        UIColor(red:0.10, green:0.74, blue:0.61, alpha:1.0), // #1abc9c
+        UIColor(red:0.18, green:0.80, blue:0.44, alpha:1.0), // #2ecc71
+        UIColor(red:0.20, green:0.60, blue:0.86, alpha:1.0), // #3498db
+        UIColor(red:0.61, green:0.35, blue:0.71, alpha:1.0), // #9b59b6
+        UIColor(red:0.20, green:0.29, blue:0.37, alpha:1.0), // #34495e
+        UIColor(red:0.93, green:0.94, blue:0.95, alpha:1.0), // #ecf0f1
+        UIColor(red:0.58, green:0.65, blue:0.65, alpha:1.0)  // #95a5a6
     ]
-
+    
     //
     // MARK: Public properties
     //
@@ -65,7 +65,7 @@ open class FunnelChart : UIView {
             return _values
         }
     }
-
+    
     open var coneLipHeightAsFractionOfViewHeight: CGFloat {
         set (newVal) {
             _coneLipHeightAsFractionOfViewHeight = newVal
@@ -75,7 +75,7 @@ open class FunnelChart : UIView {
             return _coneLipHeightAsFractionOfViewHeight
         }
     }
-
+    
     open var stemHeightAsFractionOfViewHeight: CGFloat {
         set (newVal) {
             _stemHeightAsFractionOfViewHeight = newVal
@@ -85,7 +85,7 @@ open class FunnelChart : UIView {
             return _stemHeightAsFractionOfViewHeight
         }
     }
-
+    
     open var stemWidthAsFractionOfViewWidth : CGFloat {
         set (newVal) {
             _stemWidthAsFractionOfViewWidth = newVal
@@ -95,7 +95,7 @@ open class FunnelChart : UIView {
             return _stemWidthAsFractionOfViewWidth
         }
     }
-
+    
     open var sliceSpacingAsFractionOfViewHeight: CGFloat {
         set (newVal) {
             _sliceSpacingAsFractionOfViewHeight = newVal
@@ -105,7 +105,7 @@ open class FunnelChart : UIView {
             return _sliceSpacingAsFractionOfViewHeight
         }
     }
-
+    
     open var drawHorizontalLines : Bool {
         set (newVal) {
             _drawHorizontalLines = newVal
@@ -115,7 +115,7 @@ open class FunnelChart : UIView {
             return _drawHorizontalLines
         }
     }
-
+    
     open var horizontalLinesColor : UIColor {
         set (newVal) {
             _horizontalLinesColor = newVal
@@ -125,7 +125,7 @@ open class FunnelChart : UIView {
             return _horizontalLinesColor
         }
     }
-
+    
     open var horizontalLinesThickness : CGFloat {
         set (newVal) {
             _horizontalLinesThickness = newVal
@@ -135,7 +135,7 @@ open class FunnelChart : UIView {
             return _horizontalLinesThickness
         }
     }
-
+    
     open var horizontalLinesDashStyle : [CGFloat] {
         set (newVal) {
             _horizontalLinesDashStyle = newVal
@@ -145,7 +145,7 @@ open class FunnelChart : UIView {
             return _horizontalLinesDashStyle
         }
     }
-
+    
     open var drawFunnelLeftShadow: Bool {
         set (newVal) {
             _drawFunnelLeftShadow = newVal
@@ -155,7 +155,7 @@ open class FunnelChart : UIView {
             return _drawFunnelLeftShadow
         }
     }
-
+    
     open var funnelLeftShadowWidthAsFractionOfViewWidth: CGFloat {
         set (newVal) {
             _funnelLeftShadowWidthAsFractionOfViewWidth = newVal
@@ -165,7 +165,7 @@ open class FunnelChart : UIView {
             return _funnelLeftShadowWidthAsFractionOfViewWidth
         }
     }
-
+    
     open var textShadowColor : UIColor {
         set (newVal) {
             _textShadowColor = newVal
@@ -175,7 +175,7 @@ open class FunnelChart : UIView {
             return _textShadowColor
         }
     }
-
+    
     open var textShadowOffset : CGSize {
         set (newVal) {
             _textShadowOffset = newVal
@@ -245,7 +245,7 @@ open class FunnelChart : UIView {
             return _animateIntoViewWhenPropertiesChange
         }
     }
-
+    
     //
     // MARK: Initialization
     //
@@ -253,7 +253,7 @@ open class FunnelChart : UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-
+    
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -268,7 +268,7 @@ open class FunnelChart : UIView {
         
         // Cleanup
         self.layer.sublayers?.removeAll()
-
+        
         //
         // Setup a graphics context to draw horizontal lines.
         //
@@ -288,7 +288,7 @@ open class FunnelChart : UIView {
         let slopeWidth = (rect.size.width - stemWidth) / 2
         let slopeAngle = atan2(slopeWidth, coneHeight)
         let slopeTan = tan(slopeAngle)
-
+        
         let totalValues = _values.reduce(0, +)
         var cumulativeValue: Double = 0
         
@@ -297,12 +297,12 @@ open class FunnelChart : UIView {
         }
         
         var index = 0
-
+        
         //
         // Draw each slice of the funnel based on values.
         //
         for val in _values {
-
+            
             let shape = CAShapeLayer()
             self.layer.addSublayer(shape)
             shape.fillColor = self._colorPalette[index % self._colorPalette.count].cgColor
@@ -310,11 +310,11 @@ open class FunnelChart : UIView {
             let shapeShadow = CAShapeLayer()
             self.layer.addSublayer(shapeShadow)
             shapeShadow.fillColor = UIColor.black.withAlphaComponent(0.1).cgColor
-
+            
             let startY = (CGFloat(cumulativeValue / totalValues) + (index == 0 ? 0 : _sliceSpacingAsFractionOfViewHeight)) * rect.height
             let endY = (CGFloat((cumulativeValue + val) / totalValues) - (index == (_values.count - 1) ? 0 : _sliceSpacingAsFractionOfViewHeight)) * rect.height
             let endYNoSpacing = CGFloat((cumulativeValue + val) / totalValues) * rect.height
-
+            
             let percentLabel = UILabel()
             percentLabel.text = String.localizedStringWithFormat("%.0f%@", (val / totalValues * 100.0), "%")
             percentLabel.frame = CGRect(x: slopeWidth + ((stemWidth - stemWidth * _labelsWidthAsFractionOfStemWidth) / 2), y: startY, width: stemWidth * _labelsWidthAsFractionOfStemWidth, height: endY - startY)
@@ -326,7 +326,7 @@ open class FunnelChart : UIView {
             percentLabel.adjustsFontSizeToFitWidth = true
             percentLabel.numberOfLines = 1
             percentLabel.minimumScaleFactor = 0.5
-
+            
             var points = [CGPoint]()
             
             if endY < coneLipHeight { // The section is above the lip of the cone.
@@ -334,23 +334,23 @@ open class FunnelChart : UIView {
                 let endX1: CGFloat = rect.width
                 let startX2: CGFloat = 0
                 let endX2: CGFloat = rect.width
-
+                
                 points.append(CGPoint(x: startX1, y: startY))
                 points.append(CGPoint(x: startX2, y: endY))
                 points.append(CGPoint(x: endX2, y: endY))
                 points.append(CGPoint(x: endX1, y: startY))
-
+                
             }
             else if startY < coneLipHeight && endY > coneLipHeight && endY < (coneHeight + coneLipHeight) { // The section is above the lip of the cone and above the junction of the cone and the stem.
                 let startX1: CGFloat = 0
                 let endX1: CGFloat = rect.width
-
+                
                 let startX2 = startX1
                 let endX2 = rect.width - startX2
-
+                
                 let startX3 = slopeTan * (endY - coneLipHeight)
                 let endX3 = rect.width - startX3
-
+                
                 points.append(CGPoint(x: startX1, y: startY))
                 points.append(CGPoint(x: startX2, y: coneLipHeight))
                 points.append(CGPoint(x: startX3, y: endY))
@@ -361,16 +361,16 @@ open class FunnelChart : UIView {
             else if startY < coneLipHeight && endY > coneLipHeight && endY >= (coneHeight + coneLipHeight) { // The section is above the lip of the cone and below the junction of the cone and the stem
                 let startX1: CGFloat = 0
                 let endX1: CGFloat = rect.width
-
+                
                 let startX2 = startX1
                 let endX2 = rect.width - startX2
-
+                
                 let startX3 = slopeTan * coneHeight
                 let endX3 = rect.width - startX3
-
+                
                 let startX4 = slopeWidth
                 let endX4 = rect.width - startX4
-
+                
                 points.append(CGPoint(x: startX1, y: startY))
                 points.append(CGPoint(x: startX2, y: coneLipHeight))
                 points.append(CGPoint(x: startX3, y: coneHeight + coneLipHeight))
@@ -381,8 +381,8 @@ open class FunnelChart : UIView {
                 points.append(CGPoint(x: endX1, y: startY))
             }
             else if endY < (coneHeight + coneLipHeight) { // The section is below the lip of the cone and above the junction of the cone and the stem
-                let startX1 = slopeTan * (startY - coneLipHeight)
-                let endX1 = rect.width - startX1
+                let startX1 = slopeTan * (startY - coneLipHeight) + 20
+                let endX1 = rect.width - startX1 + 20
                 let startX2 = slopeTan * (endY - coneLipHeight)
                 let endX2 = rect.width - startX2
                 
@@ -396,19 +396,19 @@ open class FunnelChart : UIView {
                 let endX1 = slopeWidth + stemWidth
                 let startX2 = slopeWidth
                 let endX2 = slopeWidth + stemWidth
-
+                
                 points.append(CGPoint(x: startX1, y: startY))
                 points.append(CGPoint(x: startX2, y: endY))
                 points.append(CGPoint(x: endX2, y: endY))
                 points.append(CGPoint(x: endX1, y: startY))
             }
             else { // The section is above the junction of the cone and the stem and below the junction of the cone and the stem.
-                let startX1 = slopeTan * (startY - coneLipHeight)
-                let endX1 = rect.width - startX1
+                let startX1 = slopeTan * (startY - coneLipHeight) + 10
+                let endX1 = rect.width - startX1 + 10
                 
                 let startX2 = slopeWidth
                 let endX2 = rect.width - startX2
-
+                
                 let startX3 = slopeWidth
                 let endX3 = rect.width - startX3
                 
@@ -441,10 +441,11 @@ open class FunnelChart : UIView {
             }
             path.close()
             shape.path = path.cgPath
-
+            
             if _drawFunnelLeftShadow {
                 let pathShadow = UIBezierPath()
                 var pointIndex = 0
+                points = points.reversed()
                 for pt in points {
                     if pointIndex == 0 {
                         pathShadow.move(to: pt)
@@ -453,7 +454,7 @@ open class FunnelChart : UIView {
                             pathShadow.addLine(to: pt)
                         } else {
                             pathShadow.addLine(to: CGPoint(x: points[points.count - pointIndex - 1].x
-                                    + stemWidth * _funnelLeftShadowWidthAsFractionOfViewWidth, y: pt.y))
+                                - stemWidth * _funnelLeftShadowWidthAsFractionOfViewWidth, y: pt.y))
                         }
                     }
                     pointIndex += 1
@@ -461,13 +462,13 @@ open class FunnelChart : UIView {
                 pathShadow.close()
                 shapeShadow.path = pathShadow.cgPath
             }
-
+            
             if _drawCount == 0 || _animateIntoViewWhenPropertiesChange {
                 CATransaction.begin()
                 CATransaction.setCompletionBlock({
                     shape.position.x = 0
                     shapeShadow.position.x = 0
-
+                    
                     // Add % label
                     if self._drawLabels {
                         self.addSubview(percentLabel)
@@ -482,24 +483,24 @@ open class FunnelChart : UIView {
                 animation.isRemovedOnCompletion = false
                 animation.beginTime = CACurrentMediaTime() + (Double(index) * 0.05)
                 animation.timingFunction = CAMediaTimingFunction(controlPoints: 1.0, 0, 0, 1.0)
-
+                
                 shape.add(animation, forKey: "basic")
                 shape.position.x = -rect.width
-
+                
                 shapeShadow.add(animation, forKey: "basic")
                 shapeShadow.position.x = -rect.width
-
+                
                 CATransaction.commit()
             }
             else{
                 self.addSubview(percentLabel)
             }
-
+            
             cumulativeValue += val
-
+            
             index += 1
         }
-
+        
         _drawCount += 1
     }
 }
