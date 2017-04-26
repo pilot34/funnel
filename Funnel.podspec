@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "Funnel"
-  s.version          = "0.1.0"
+  s.version          = "0.1.1"
   s.summary          = "A funnel chart written in Swift."
 
 # This description is used to generate tags and improve search results.
@@ -22,11 +22,9 @@ Pod::Spec.new do |s|
                        DESC
 
   s.homepage         = "https://github.com/ayudasystems/funnel"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "Pierre-Yves Troel" => "pyt@pyttroll.com" }
-  s.source           = { :git => "https://github.com/ayudasystems/Funnel.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => "https://github.com/pilot34/Funnel.git", :tag => s.version.to_s }
 
   s.platform     = :ios, '8.0'
   s.requires_arc = true
@@ -35,8 +33,4 @@ Pod::Spec.new do |s|
   s.resource_bundles = {
     'Funnel' => ['Pod/Assets/*.png']
   }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
