@@ -38,6 +38,7 @@ open class FunnelChart : UIView {
     fileprivate var _textColor = UIColor.white
 
     fileprivate var _values: [Double] = [6, 5, 4, 3, 2]
+    fileprivate var _texts: [String]?
 
     fileprivate var _colorPalette: [UIColor] = [
             UIColor(red:0.95, green:0.77, blue:0.06, alpha:1.0), // #f1c40f
@@ -63,6 +64,16 @@ open class FunnelChart : UIView {
         }
         get{
             return _values
+        }
+    }
+
+    open var texts: [String]? {
+        set (newVal) {
+            _texts = newVal
+            self.setNeedsDisplay()
+        }
+        get{
+            return _texts
         }
     }
 
@@ -316,7 +327,11 @@ open class FunnelChart : UIView {
             let endYNoSpacing = CGFloat((cumulativeValue + val) / totalValues) * rect.height
 
             let percentLabel = UILabel()
-            percentLabel.text = String.localizedStringWithFormat("%.0f%@", (val / totalValues * 100.0), "%")
+            if texts != nil && texts!.count > index {
+                percentLabel.text = texts![index]
+            } else {
+                percentLabel.text = String.localizedStringWithFormat("%.0f%@", (val / totalValues * 100.0), "%")
+            }
             percentLabel.frame = CGRect(x: slopeWidth + ((stemWidth - stemWidth * _labelsWidthAsFractionOfStemWidth) / 2), y: startY, width: stemWidth * _labelsWidthAsFractionOfStemWidth, height: endY - startY)
             percentLabel.font = self._font
             percentLabel.textColor = self._textColor
